@@ -72,7 +72,7 @@ For the underlying NASim documentation, see [https://networkattacksimulator.read
 
 ## PPO-TrXL
 
-We also provide an adapted implementation of PPO-TrXL for StochNASim. With hyperparameter tuning.
+We also provide an adapted implementation of PPO-TrXL to StochNASim. With hyperparameter tuning.
 
 The basis we use comes from [CleanRL](https://docs.cleanrl.dev/rl-algorithms/ppo-trxl/). PPO-TrXL was created and implemented by Marco Plaines et al. for their work titled: [Memory Gym: Towards Endless Tasks to Benchmark Memory Capabilities of Agents](https://arxiv.org/abs/2309.17207).
 
