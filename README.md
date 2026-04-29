@@ -79,21 +79,21 @@ The basis we use comes from [CleanRL](https://docs.cleanrl.dev/rl-algorithms/ppo
 ### Exmaple Usage
 ```
 cd nasim/agents/ppo_trxl && python ppo_trxl.py \
-    --exp-name smoke_test \
-    --env-id StochPO-v0 \
-    --num-envs 2 \
-    --num-steps 64 \
-    --total-timesteps 10000 \
-    --num-evals 1 \
-    --eval-freq 5000 \
-    --num-eval-envs 2 \
-    --num-eval-episodes 4 \
-    --anneal-steps 256 \
-    --trxl-memory-length 32 \
-    --trxl-num-layers 2 \
-    --trxl-dim 64 \
-    --trxl-num-heads 1 \
-    --no-cuda
+        --exp-name smoke_test \
+        --env-id StochPO-v0 \
+        --num-envs 2 \
+        --num-steps 64 \
+        --total-timesteps 10000 \
+        --num-evals 1 \
+        --eval-freq 5000 \
+        --num-eval-envs 2 \
+        --num-eval-episodes 4 \
+        --anneal-steps 256 \
+        --trxl-memory-length 32 \
+        --trxl-num-layers 2 \
+        --trxl-dim 64 \
+        --trxl-num-heads 1 \
+        --no-cuda
 ```
 
 ### Hyperparameter Tuning
