@@ -56,17 +56,16 @@ while not done:
     obs, reward, terminated, truncated, info = env.step(action)
     done = terminated or truncated
 ```
+
 ## Repository structure
 
-<!-- TODO: adapt this tree to match your actual layout -->
-
 ```
-nasim/              Original NASim source, preserved from upstream
-nasim/stochastic_envs/         StochNASim environment (extends NASim) + training code
-nasim/agents/ppo_trxl
-test/               Test scripts for the environment
-configs/            Best hyperparameters per algorithm (paper Appendix A)
-docs/               pre-existing documentation
+nasim/                   Original NASim source, preserved from upstream
+nasim/stochastic_envs/   StochNASim environment (extends NASim) + training code
+nasim/agents/ppo_trxl/   Adapted implementation of PPO-TrXL for StochNASim 
+test/                    Test scripts for the environment
+configs/                 Best hyperparameters per algorithm (paper Appendix A)
+docs/                    pre-existing documentation
 ```
 
 For the underlying NASim documentation, see [https://networkattacksimulator.readthedocs.io/](https://networkattacksimulator.readthedocs.io/).
@@ -98,6 +97,7 @@ cd nasim/agents/ppo_trxl && python ppo_trxl.py \
 ```
 
 ### Hyperparameter Tuning
+```
 cd nasim/agents/ppo_trxl && python hyperparams_search.py \
         --env-id StochPO-v0 \
         --num-envs 8 \
@@ -112,6 +112,7 @@ cd nasim/agents/ppo_trxl && python hyperparams_search.py \
         --num-eval-envs 8 \
         --num-eval-episodes 100 \
         --anneal-steps 4020000
+```
 
 ## Citation
 
@@ -144,7 +145,7 @@ StochNASim is built on top of [NASim](https://github.com/Jjschwartz/NetworkAttac
 
 PPO-TrXL is adapted from [cleanRL](https://github.com/vwxyzjn/cleanrl) (Huang et al., 2022). PPO, PPO-FS, PPO-AO, and PPO-LSTM use [Stable-Baselines3](https://github.com/DLR-RM/stable-baselines3) v2.4 and [rl-baselines3-zoo](https://github.com/DLR-RM/rl-baselines3-zoo) for hyperparameter tuning. The Transformer-XL implementation follows Pleines et al. (2025).
 
-This research was funded by the Royal Higher Institute of Defence under the project DAP23/05. Further support comes from the Flemish Government under the "Onderzoeksprogramma Artificiële Intelligentie (AI) Vlaanderen" program. The resources and services used in this work were, in part, provided by the VSC (Flemish Supercomputer Center), funded by the Research Foundation – Flanders (FWO) and the Flemish Government. Pieter Libin acknowledges support from the Research council of the Vrije Universiteit Brussel (OZR-VUB) via grant number OZR3863BOF.
+This research was funded by the Royal Higher Institute of Defence under the project DAP23/05. This work was supported by Flemish Government under the "Onderzoeksprogramma Artificiële Intelligentie (AI) Vlaanderen" program. The resources and services used in this work were, in part, provided by the VSC (Flemish Supercomputer Center), funded by the Research Foundation – Flanders (FWO) and the Flemish Government. Pieter Libin acknowledges support from the Research council of the Vrije Universiteit Brussel (OZR-VUB) via grant number OZR3863BOF.
 
 ## License
 
