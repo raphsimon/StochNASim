@@ -178,7 +178,7 @@ class Scenario:
         )
 
     @property
-    def host_value_bounds(self): # TODO I think this has become irrelevant, remove if true
+    def host_value_bounds(self):
         """The min and max values of host in scenario
 
         Returns

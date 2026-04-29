@@ -271,8 +271,7 @@ if __name__ == '__main__':
             [make_env(args.env_id) for _ in range(args.num_envs)],
         )
         # Evaluation environment setup
-        # We do it in this ugly way because I can't figure out how to use several
-        # parallel environments in the evaluation
+        # evaluation uses a separate vectorised env to keep training rollouts isolated.
         eval_envs = gym.vector.SyncVectorEnv(
             [make_env(args.env_id) for _ in range(args.num_envs)],
         )

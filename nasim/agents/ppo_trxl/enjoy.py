@@ -52,9 +52,7 @@ if __name__ == "__main__":
     env = make_env(args.env_id, seed=args.seed, render_mode="human",
                    min_num_hosts=args.min_num_hosts, max_num_hosts=args.max_num_hosts)()
     obs, _ = env.reset(seed=cli_args.seed)
-    print("Calling env.render()")
     env.render()
-    print("Did it render?")
 
     # Determine maximum episode steps
     max_episode_steps = env.spec.max_episode_steps

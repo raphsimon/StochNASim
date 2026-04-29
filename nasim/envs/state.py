@@ -3,6 +3,7 @@ import numpy as np
 from nasim.envs.host_vector import HostVector
 from nasim.envs.observation import Observation
 
+SENSITIVE_VALUE_MULTIPLIER = 100
 
 class State:
     """A state in the NASim Environment.
@@ -254,7 +255,7 @@ class State:
         self.get_host(host_addr).discovered = True
 
     def get_host_value(self, host_addr):
-        return self.get_host(host_addr).sensitive * 100 # TODO remove magic number
+        return self.get_host(host_addr).sensitive * SENSITIVE_VALUE_MULTIPLIER
 
     def host_is_running_service(self, host_addr, service):
         return self.get_host(host_addr).is_running_service(service)
@@ -266,7 +267,7 @@ class State:
         total_value = 0
         for host_addr in self.host_num_map:
             host = self.get_host(host_addr)
-            total_value += host.sensitive * 100 # TODO remove magic number
+            total_value += host.sensitive * SENSITIVE_VALUE_MULTIPLIER
         return total_value
 
     def state_size(self):

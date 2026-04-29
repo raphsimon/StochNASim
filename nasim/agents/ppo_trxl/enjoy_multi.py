@@ -81,11 +81,6 @@ def trajectory_visualization(network_size: int, trajectory: list[tuple]):
     action_success = [item[1] for item in trajectory]
     rewards = [item[2] for item in trajectory]
 
-    # Result
-    #print("Actions:", actions)
-    #print("Action Success:", action_success)
-    #print("Rewards:", rewards)
-
     """
     Possible actions in the environment:
         service_scan
@@ -209,9 +204,6 @@ if __name__ == "__main__":
         [make_env(args.env_id, seed=cli_args.env_seed, min_num_hosts=cli_args.min_num_hosts, max_num_hosts=cli_args.max_num_hosts) for _ in range(cli_args.num_envs)]
     )
 
-    #obs_as_int = binary_array_to_int(np.array(envs.get_attr('current_state')[0], dtype=int))
-    #print("State int repr:", obs_as_int)
-
     # TRY NOT TO MODIFY: seeding
     random.seed(cli_args.seed)
     np.random.seed(cli_args.seed)
@@ -220,7 +212,6 @@ if __name__ == "__main__":
 
     # Determine maximum episode steps
     max_episode_steps = envs.envs[0].spec.max_episode_steps
-    print(f"{max_episode_steps=}")
     if not max_episode_steps:
         envs.envs[0].reset()  # Memory Gym envs need to be reset before accessing max_episode_steps
         max_episode_steps = envs.envs[0].max_episode_steps
@@ -276,8 +267,6 @@ if __name__ == "__main__":
     while total_episodes_completed < target_episodes:
         # Identify active environments (those that haven't completed all episodes)
         active_envs = np.where(episodes_per_env < cli_args.num_episodes)[0]
-        
-        #print("Loop count:", loop_counter)
 
         if len(active_envs) == 0:
             break
@@ -319,7 +308,6 @@ if __name__ == "__main__":
         # We have to access the network sizes before we step, because if we step
         # we reach the end of the environment, we will overwrite the actual nw size
         nw_size = envs.get_attr("current_num_hosts")
-        #print("Current network sizes:", nw_size)
 
         # Step environments
         next_obs, rewards, terminations, truncations, infos = envs.step(full_actions)
@@ -341,18 +329,13 @@ if __name__ == "__main__":
                     episode_stats_per_network_size[nw_size[i]].append((current_returns[i], env_steps[i]))
                 
                 action_success_reward_trajec = envs.get_attr('action_success_reward_trajec_pre_reset')
-                #print(action_success_reward_trajec[i])
-                #print(len(action_success_reward_trajec[i]))
 
                 if cli_args.visualize:
                     trajectory_visualization(nw_size[i], action_success_reward_trajec[i])
-                
-                # Print results
+
                 episodes_per_env[i] += 1
                 total_episodes_completed += 1
-                #print(f"Episode {episodes_per_env[i]}/{cli_args.num_episodes}, Env {i}: "
-                #      f"Return = {current_returns[i]:.2f}, Length = {env_steps[i]}")
-                
+
                 # Store the trajectory
                 if cli_args.save_trajectory:
                        # Just use the ep_len to have a unique key

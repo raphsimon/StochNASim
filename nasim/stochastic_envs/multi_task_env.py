@@ -307,9 +307,6 @@ class MultiTaskNASimEnv(gym.Env):
     def reset(self, *, seed=None, options=None):
         super().reset(seed=seed, options=options)
 
-        # TODO: Verify whether we indeed reset to the same starting state for
-        #       every selected network size?
-
         self.steps = 0
         scenario = self.rng.choice(self.scenario_buffer, 1).item()
 

@@ -256,7 +256,6 @@ class Agent(nn.Module):
         super().__init__()
         self.obs_shape = observation_space.shape
         self.max_episode_steps = max_episode_steps
-        print("Agent setup with max_episode_step=", max_episode_steps)
 
         if len(self.obs_shape) > 1:
             self.encoder = nn.Sequential(
@@ -459,10 +458,8 @@ def evaluate_policy(args, agent, envs, device, max_episode_steps):
 if __name__ == "__main__":
     args = tyro.cli(Args)
     args.batch_size = int(args.num_envs * args.num_steps)
-    print("Batch size:", args.batch_size)
     args.minibatch_size = int(args.batch_size // args.num_minibatches)
     args.num_iterations = args.total_timesteps // args.batch_size
-    print("Total number of iterations:", args.num_iterations)
     run_name = f"{args.env_id}__{args.exp_name}__{args.seed}__{int(time.time())}"
     eval_counter = 0 # Number of already performed evaluations
     eval_counter_vec = [False] * args.num_evals
@@ -497,16 +494,12 @@ if __name__ == "__main__":
     torch.manual_seed(args.seed)
     torch.backends.cudnn.deterministic = args.torch_deterministic
 
-    # TODO: Re-enable CUDA after testing.
     # Determine the device to be used for training and set the default tensor type
     if args.cuda:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         torch.set_default_device(device)
     else:
         device = torch.device("cpu")
-
-    print("Min_num_hosts:", args.min_num_hosts)
-    print("Max_num_hosts:", args.max_num_hosts)
 
     # Environment setup
     envs = gym.vector.SyncVectorEnv(
