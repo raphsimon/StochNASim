@@ -7,6 +7,16 @@ extras = {
         'torch>=1.5',
         'tensorboard>=2.2'
     ],
+    'ppo_trxl': [
+        'torch>=2.0',
+        'tensorboard>=2.10',
+        'tyro>=0.5',
+        'einops>=0.7',
+        'optuna>=4.0',
+        'sqlalchemy>=1.4',
+        'wandb>=0.13',
+        'huggingface_hub>=0.11'
+    ],
     'docs': [
         'sphinx>=3.0',
         'sphinx-rtd-theme>=0.4'
@@ -45,7 +55,7 @@ setup(
         if package.startswith('nasim')
     ],
     install_requires=[
-        'gymnasium>=0.26',
+        'gymnasium>=0.29,<0.30',
         'numpy<2.0.0',
         'networkx>=2.4',
         'matplotlib>=3.1',
